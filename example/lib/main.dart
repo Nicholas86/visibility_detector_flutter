@@ -11,6 +11,11 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'visibility_analysis_page.dart';
 import 'demo_page.dart'; // 添加新的演示页面
 import 'component_demos.dart';
+import 'render_object_guide.dart';
+import 'custom_render_examples.dart';
+import 'advanced_render_example.dart';
+import 'proxy_render_example.dart';
+import 'creative_render_demo.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -124,14 +129,14 @@ class HomePage extends StatelessWidget {
             
             _buildDemoCard(
               context,
-              title: '组件演示集合',
-              description: '展示各种自定义组件的使用方法和效果',
-              icon: Icons.widgets,
+              title: '创意 RenderObject 效果',
+              description: '液体波浪、粒子爆炸、磁性布局等创新效果',
+              icon: Icons.auto_awesome,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ComponentDemosPage(),
+                    builder: (context) => const CreativeRenderDemoPage(),
                   ),
                 );
               },
