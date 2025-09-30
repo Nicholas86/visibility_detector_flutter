@@ -29,6 +29,7 @@ class _PageViewParallaxPageState extends State<PageViewParallaxPage> {
     '4955810',
     '4424137',
     '18847956',
+    '26653530',
   ]
       .map((id) =>
           'https://images.pexels.com/photos/$id/pexels-photo-$id.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')
