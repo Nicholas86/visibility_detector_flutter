@@ -13,6 +13,7 @@ import 'demo_page.dart'; // 添加新的演示页面
 import 'component_demos.dart';
 import 'creative_render_demo.dart';
 import 'features/waterfall_flow_demo/waterfall_flow_page.dart';
+import 'features/pageview_demo/pageview_demo_page.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -157,6 +158,21 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const WaterfallFlowPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDemoCard(
+              context,
+              title: 'PageView 演示集合',
+              description: '展示 PageView 的各种效果：基础演示、视差效果、监听器等',
+              icon: Icons.view_carousel,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PageViewDemoPage(),
                   ),
                 );
               },

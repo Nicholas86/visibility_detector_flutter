@@ -187,6 +187,7 @@ class WaterfallFlowPageState extends State<WaterfallFlowPage> {
           top: observeOffset,
           child: Container(color: Colors.red),
         ),
+        _buildDebugInfo(),
       ],
     );
     return resultWidget;
