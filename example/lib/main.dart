@@ -12,6 +12,7 @@ import 'visibility_analysis_page.dart';
 import 'demo_page.dart'; // 添加新的演示页面
 import 'component_demos.dart';
 import 'creative_render_demo.dart';
+import 'features/waterfall_flow_demo/waterfall_flow_page.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -38,8 +39,7 @@ const mainListKey = Key('MainList');
 
 const scaleButtonKey = Key('scaleButton');
 
-Key secondaryScrollableKey(int primaryIndex) =>
-    ValueKey('secondary-$primaryIndex');
+Key secondaryScrollableKey(int primaryIndex) => ValueKey('secondary-$primaryIndex');
 
 /// Returns the [Key] to the [VisibilityDetector] widget in each cell of the
 /// pseudo-table.
@@ -51,8 +51,7 @@ Key cellContentKey(int row, int col) => Key('Content-$row-$col');
 /// A callback to be invoked by the [VisibilityDetector.onVisibilityChanged]
 /// callback.  We use the extra level of indirection to allow widget tests to
 /// reuse this demo app with a different callback.
-final visibilityListeners =
-    <void Function(RowColumn rc, VisibilityInfo info)>[];
+final visibilityListeners = <void Function(RowColumn rc, VisibilityInfo info)>[];
 
 void main() => runApp(MyApp());
 
@@ -88,7 +87,6 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 24),
-            
             _buildDemoCard(
               context,
               title: 'Visibility Detector 原始示例',
@@ -96,16 +94,29 @@ class HomePage extends StatelessWidget {
               icon: Icons.visibility,
               onTap: () {
                 Navigator.push(
-                   context,
-                   MaterialPageRoute(
-                     builder: (context) => const VisibilityAnalysisPage(),
-                   ),
-                 );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const VisibilityAnalysisPage(),
+                  ),
+                );
               },
             ),
-            
             const SizedBox(height: 16),
-            
+            _buildDemoCard(
+              context,
+              title: '组件演示集合',
+              description: '展示各种自定义组件：进度条、折线图、地址选择器、滑块等',
+              icon: Icons.widgets,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ComponentDemosPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
             _buildDemoCard(
               context,
               title: '自定义 RenderObject 示例',
@@ -120,9 +131,7 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-            
             const SizedBox(height: 16),
-            
             _buildDemoCard(
               context,
               title: '创意 RenderObject 效果',
@@ -137,26 +146,22 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-            
             const SizedBox(height: 16),
-            
             _buildDemoCard(
               context,
-              title: '组件演示集合',
-              description: '展示各种自定义组件的使用方法和效果，包括地址选择器等',
-              icon: Icons.widgets,
+              title: '瀑布流页面演示',
+              description: '展示基于 scrollview_observer 的瀑布流实现',
+              icon: Icons.grid_view,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ComponentDemosPage(),
+                    builder: (context) => const WaterfallFlowPage(),
                   ),
                 );
               },
             ),
-            
-            const SizedBox(height: 32),
-            
+            const SizedBox(height: 16),
             const Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
@@ -182,7 +187,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            
             const SizedBox(height: 16),
           ],
         ),
@@ -259,8 +263,7 @@ class Layout {
 
 /// The root widget for the demo app.
 class VisibilityDetectorDemo extends StatelessWidget {
-  const VisibilityDetectorDemo({Key? key, this.useSlivers = false})
-      : super(key: key);
+  const VisibilityDetectorDemo({Key? key, this.useSlivers = false}) : super(key: key);
 
   final bool useSlivers;
 
@@ -268,8 +271,7 @@ class VisibilityDetectorDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      scrollBehavior:
-          const MaterialScrollBehavior().copyWith(scrollbars: false),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(scrollbars: false),
       theme: ThemeData(primarySwatch: Colors.blue),
       home: VisibilityDetectorDemoPage(key: key, useSlivers: useSlivers),
     );
@@ -278,18 +280,15 @@ class VisibilityDetectorDemo extends StatelessWidget {
 
 /// The main page [VisibilityDetectorDemo].
 class VisibilityDetectorDemoPage extends StatefulWidget {
-  VisibilityDetectorDemoPage({Key? key, this.useSlivers = false})
-      : super(key: key);
+  VisibilityDetectorDemoPage({Key? key, this.useSlivers = false}) : super(key: key);
 
   final bool useSlivers;
 
   @override
-  VisibilityDetectorDemoPageState createState() =>
-      VisibilityDetectorDemoPageState();
+  VisibilityDetectorDemoPageState createState() => VisibilityDetectorDemoPageState();
 }
 
-class VisibilityDetectorDemoPageState
-    extends State<VisibilityDetectorDemoPage> {
+class VisibilityDetectorDemoPageState extends State<VisibilityDetectorDemoPage> {
   VisibilityDetectorDemoPageState();
 
   var _layoutIndex = 0;
@@ -362,10 +361,7 @@ class VisibilityDetectorDemoPageState
               child: ListView.builder(
                 key: mainListKey,
                 scrollDirection: _layout.mainAxis,
-                itemExtent: (_layout.mainAxis == Axis.vertical
-                        ? cellHeight
-                        : cellWidth) +
-                    2 * externalCellPadding,
+                itemExtent: (_layout.mainAxis == Axis.vertical ? cellHeight : cellWidth) + 2 * externalCellPadding,
                 itemBuilder: (BuildContext context, int primaryIndex) {
                   return _useSlivers
                       ? SliverDemoPageSecondaryAxis(
@@ -419,9 +415,7 @@ class VisibilityDetectorDemoPageState
             shape: const Border(),
             onPressed: _toggleSlivers,
             heroTag: null,
-            child: _useSlivers
-                ? const Text('RenderBox')
-                : const Text('RenderSliver'),
+            child: _useSlivers ? const Text('RenderBox') : const Text('RenderSliver'),
           ),
           const SizedBox(width: 8),
           FloatingActionButton(
@@ -443,9 +437,7 @@ class VisibilityDetectorDemoPageState
       body: Column(
         children: <Widget>[
           _tableShown ? Expanded(child: table!) : const Spacer(),
-          VisibilityReport(
-              title:
-                  'Visibility (${_useSlivers ? "RenderSliver" : "RenderBox"})'),
+          VisibilityReport(title: 'Visibility (${_useSlivers ? "RenderSliver" : "RenderBox"})'),
         ],
       ),
     );
@@ -545,9 +537,7 @@ class DemoPageCell extends StatelessWidget {
     required this.useSlivers,
     required this.useScale,
   })  : _cellName = 'Item $primaryIndex-$secondaryIndex',
-        _backgroundColor = ((primaryIndex + secondaryIndex) % 2 == 0)
-            ? Colors.pink[200]
-            : Colors.yellow[200],
+        _backgroundColor = ((primaryIndex + secondaryIndex) % 2 == 0) ? Colors.pink[200] : Colors.yellow[200],
         super(key: key);
 
   final int primaryIndex;
@@ -623,8 +613,7 @@ class VisibilityReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final headingTextStyle =
-        Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white);
+    final headingTextStyle = Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white);
 
     final heading = Container(
       padding: const EdgeInsets.all(_reportPadding),

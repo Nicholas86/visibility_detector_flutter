@@ -11,6 +11,14 @@ dependencies:
     sdk: flutter
   visibility_detector:
     path: ../
+  # 瀑布流相关依赖
+  waterfall_flow: ^3.0.2
+  # 滚动监听库
+  scrollview_observer: ^1.21.0
+  # 视频播放器
+  video_player: ^2.8.1
+  # 用于生成假数据
+  faker: ^2.1.0
 
 dev_dependencies:
   flutter_test:

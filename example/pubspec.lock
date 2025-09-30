@@ -41,6 +41,30 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.19.1"
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      sha256: "1e445881f28f22d6140f181e07737b22f1e099a5e1ff94b0af2f9e4a463f4855"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.6"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: "09bad715f418841f976c77db72d5398dc1253c21fb9c0c7f0b0b985860b2d58e"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
+  extended_list_library:
+    dependency: transitive
+    description:
+      name: extended_list_library
+      sha256: cb424a04464e89bd6737f9ae025029bd8e913c7bf37101ad10c2defe0238d842
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -49,6 +73,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.2"
+  faker:
+    dependency: "direct main"
+    description:
+      name: faker
+      sha256: "544c34e9e1d322824156d5a8d451bc1bb778263b892aded24ec7ba77b0706624"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -59,6 +91,19 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      sha256: "6d1264f2dffa1b1101c25a91dff0dc2daee4c18e87cd8538729773c073dbf602"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.15.6"
   leak_tracker:
     dependency: transitive
     description:
@@ -115,6 +160,22 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.9.1"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.8"
+  scrollview_observer:
+    dependency: "direct main"
+    description:
+      name: scrollview_observer
+      sha256: c2f713509f18f88f637b2084b47a90c91fb1ef066d5d82d2cf3194d8509dc6ab
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.26.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -168,6 +229,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.4"
+  typed_data:
+    dependency: transitive
+    description:
+      name: typed_data
+      sha256: f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.4.0"
   vector_math:
     dependency: transitive
     description:
@@ -176,6 +245,46 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
+  video_player:
+    dependency: "direct main"
+    description:
+      name: video_player
+      sha256: "0d55b1f1a31e5ad4c4967bfaa8ade0240b07d20ee4af1dfef5f531056512961a"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.10.0"
+  video_player_android:
+    dependency: transitive
+    description:
+      name: video_player_android
+      sha256: "6cfe0b1e102522eda1e139b82bf00602181c5844fd2885340f595fb213d74842"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.8.14"
+  video_player_avfoundation:
+    dependency: transitive
+    description:
+      name: video_player_avfoundation
+      sha256: f9a780aac57802b2892f93787e5ea53b5f43cc57dc107bee9436458365be71cd
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.8.4"
+  video_player_platform_interface:
+    dependency: transitive
+    description:
+      name: video_player_platform_interface
+      sha256: cf2a1d29a284db648fd66cbd18aacc157f9862d77d2cc790f6f9678a46c1db5a
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "6.4.0"
+  video_player_web:
+    dependency: transitive
+    description:
+      name: video_player_web
+      sha256: "9f3c00be2ef9b76a95d94ac5119fb843dca6f2c69e6c9968f6f2b6c9e7afbdeb"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.4.0"
   visibility_detector:
     dependency: "direct main"
     description:
@@ -191,6 +300,22 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "14.3.1"
+  waterfall_flow:
+    dependency: "direct main"
+    description:
+      name: waterfall_flow
+      sha256: e7ab5728fe536e53cf4b8ea97128112ad18c7f1d797d91f073bf396fa6910181
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.1"
+  web:
+    dependency: transitive
+    description:
+      name: web
+      sha256: "868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.1"
 sdks:
-  dart: ">=3.7.0-0 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  dart: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
