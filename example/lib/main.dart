@@ -16,6 +16,7 @@ import 'features/waterfall_flow_demo/waterfall_flow_page.dart';
 import 'features/pageview_demo/pageview_demo_page.dart';
 import 'features/bubble_text_demo/bubble_text_demo_page.dart';
 import 'features/chat_popup_menu_demo/chat_popup_menu_demo_page.dart';
+import 'features/chat_popup_menu_demo/message_demo_page.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -115,6 +116,21 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ChatPopupMenuDemoPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDemoCard(
+              context,
+              title: '消息演示',
+              description: '展示完整的消息界面，包含消息气泡和弹出菜单交互',
+              icon: Icons.message,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MessageDemoPage(),
                   ),
                 );
               },

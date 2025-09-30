@@ -50,8 +50,8 @@ class _ChatPopupMenuState extends State<ChatPopupMenu> {
       final ui.FrameInfo frameInfo = await codec.getNextFrame();
       setState(() {
         _waveImage = frameInfo.image;
-        print('Wave image loaded: ${_waveImage!.width}x${_waveImage!.height}');
       });
+      print('Wave image loaded: ${_waveImage!.width}x${_waveImage!.height}');
     } catch (e) {
       print('Failed to load wave image: $e');
     }
@@ -71,7 +71,7 @@ class _ChatPopupMenuState extends State<ChatPopupMenu> {
       child: Container(
         width: 208,
         height: 72,
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -107,7 +107,7 @@ class ChatPopupMenuDemoPage extends StatefulWidget {
 }
 
 class _ChatPopupMenuDemoPageState extends State<ChatPopupMenuDemoPage> {
-  double _arrowWidth = 30;
+  double _arrowWidth = 40;
   double _arrowHeight = 12;
   double _borderRadius = 12;
   Color _backgroundColor = const Color(0xFF5E5F62);
@@ -341,7 +341,7 @@ class _PopupBackgroundPainter extends CustomPainter {
     // 获取图片实际高度（使用固定值）
     const imageHeight = 10.0;
 
-    print('Canvas size: $size');
+    print('Canvas size: $size, waveImage: $waveImage');
 
     // 先绘制wave.png图片在顶部
     if (waveImage != null) {
@@ -366,25 +366,24 @@ class _PopupBackgroundPainter extends CustomPainter {
 
     // 水平居中：(画布宽度 - 图片宽度) / 2
     final centerX = (size.width - imageBoxWidth) / 2;
-    // 垂直位置：保持在顶部
+    // 垂直位置：在消息盒子中心点正下方（顶部位置）
     final centerY = 0.0;
 
     final offset = Offset(centerX, centerY);
 
     print('Image offset: $offset, Canvas size: $size');
 
-    // 绘制整个图片放在到指定区域
-    // 如果 src 和 dst 的尺寸不同，会自动进行缩放
+    // 绘制整个图片到指定区域，气泡位置在消息盒子中心点正下方
     canvas.drawImageRect(
       waveImage!,
       // src: 将图片资源的整个区域
       Rect.fromLTWH(0, 0, waveImage!.width.toDouble(), waveImage!.height.toDouble()),
-      // dst: 绘制到画布顶部，图片放在宽: 40,高: 10的盒子内
+      // dst: 绘制到画布顶部中心，图片放在宽: 40,高: 10的盒子内
       Rect.fromLTWH(centerX, 0, imageBoxWidth, imageBoxHeight),
       Paint(),
     );
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
