@@ -14,6 +14,8 @@ import 'component_demos.dart';
 import 'creative_render_demo.dart';
 import 'features/waterfall_flow_demo/waterfall_flow_page.dart';
 import 'features/pageview_demo/pageview_demo_page.dart';
+import 'features/bubble_text_demo/bubble_text_demo_page.dart';
+import 'features/chat_popup_menu_demo/chat_popup_menu_demo_page.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -105,6 +107,21 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
             _buildDemoCard(
               context,
+              title: '聊天弹出菜单',
+              description: '基于 CustomPainter 实现的带圆头箭头的聊天弹出菜单组件',
+              icon: Icons.chat_bubble_outline,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChatPopupMenuDemoPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDemoCard(
+              context,
               title: '组件演示集合',
               description: '展示各种自定义组件：进度条、折线图、地址选择器、滑块等',
               icon: Icons.widgets,
@@ -173,6 +190,21 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const PageViewDemoPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDemoCard(
+              context,
+              title: 'BubbleText 气泡文本',
+              description: '基于自定义 RenderObject 实现的高性能气泡文本组件',
+              icon: Icons.chat_bubble_outline,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BubbleTextDemoPage(),
                   ),
                 );
               },
