@@ -11,10 +11,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'visibility_analysis_page.dart';
 import 'demo_page.dart'; // 添加新的演示页面
 import 'component_demos.dart';
-import 'render_object_guide.dart';
-import 'custom_render_examples.dart';
-import 'advanced_render_example.dart';
-import 'proxy_render_example.dart';
 import 'creative_render_demo.dart';
 
 const String title = 'VisibilityDetector Demo';
@@ -82,7 +78,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.blue.shade700,
         foregroundColor: Colors.white,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -142,7 +138,24 @@ class HomePage extends StatelessWidget {
               },
             ),
             
-            const Spacer(),
+            const SizedBox(height: 16),
+            
+            _buildDemoCard(
+              context,
+              title: '组件演示集合',
+              description: '展示各种自定义组件的使用方法和效果，包括地址选择器等',
+              icon: Icons.widgets,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ComponentDemosPage(),
+                  ),
+                );
+              },
+            ),
+            
+            const SizedBox(height: 32),
             
             const Card(
               child: Padding(
@@ -169,6 +182,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            
+            const SizedBox(height: 16),
           ],
         ),
       ),
