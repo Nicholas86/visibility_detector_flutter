@@ -8,10 +8,10 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-import 'visibility_analysis_page.dart';
-import 'demo_page.dart'; // 添加新的演示页面
-import 'component_demos.dart';
-import 'creative_render_demo.dart';
+import 'features/visibility_demo/visibility_analysis_page.dart';
+import 'features/render_object_demos/demo_page.dart'; // 添加新的演示页面
+import 'features/basic_components_demo/component_demos.dart';
+import 'features/creative_effects_demo/creative_render_demo.dart';
 import 'features/waterfall_flow_demo/waterfall_flow_page.dart';
 import 'features/pageview_demo/pageview_demo_page.dart';
 import 'features/bubble_text_demo/bubble_text_demo_page.dart';

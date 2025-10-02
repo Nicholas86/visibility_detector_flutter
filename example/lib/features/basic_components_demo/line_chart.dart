@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:visibility_detector_example/popup_arrow.dart';
+import 'package:visibility_detector_example/features/basic_components_demo/popup_arrow.dart';
 
 class DJChartPointData {
   final num yValue;
