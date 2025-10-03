@@ -24,38 +24,51 @@ class _MessageDemoPageState extends State<MessageDemoPage> {
     _messages.addAll([
       MessageData(
         id: '1',
+        content: '源石的金色海洋、逼仄的内部宇宙，金铁碰撞的声音此起彼伏，回荡在周遭不停冲杀的萨卡兹众魂之间。漆黑的魂影与幽蓝的装甲不断交错、分离，但直接战力的差距太过明显，那道蓝色的流光不过是在勉强招架、伺机逃窜。\n\n"呃！"终于，我的反应力与机动性被逼到极限，无力格挡那迅捷精准的二连击，重重地撞在了一处凝固的波涛中。如墨的剑锋直指我的咽喉，却迟迟未有下一步的动作。',
+        type: MessageType.text,
+        timestamp: now.subtract(const Duration(minutes: 10)),
+        isFromMe: false,
+        isFirstMessage: true, // 对方的第一条消息
+      ),
+      MessageData(
+        id: '2',
         content: '你好！这是一条测试消息',
         type: MessageType.text,
         timestamp: now.subtract(const Duration(minutes: 5)),
         isFromMe: false,
+        isFirstMessage: false, // 对方的后续消息
       ),
       MessageData(
-        id: '2',
+        id: '3',
         content: '收到，我来发个绝密表情包给你看看',
         type: MessageType.text,
         timestamp: now.subtract(const Duration(minutes: 4)),
         isFromMe: true,
+        isFirstMessage: true, // 我的第一条消息
       ),
       MessageData(
-        id: '3',
+        id: '4',
         content: '😄',
         type: MessageType.emoji,
         timestamp: now.subtract(const Duration(minutes: 3)),
         isFromMe: true,
+        isFirstMessage: false, // 我的后续消息
       ),
       MessageData(
-        id: '4',
+        id: '5',
         content: '哈哈，很有趣的表情包！',
         type: MessageType.text,
         timestamp: now.subtract(const Duration(minutes: 2)),
         isFromMe: false,
+        isFirstMessage: false, // 对方的后续消息
       ),
       MessageData(
-        id: '5',
+        id: '6',
         content: '长按消息可以看到弹出菜单哦',
         type: MessageType.text,
         timestamp: now.subtract(const Duration(minutes: 1)),
         isFromMe: true,
+        isFirstMessage: false, // 我的后续消息
       ),
     ]);
   }
@@ -139,6 +152,9 @@ class _MessageDemoPageState extends State<MessageDemoPage> {
   void _sendMessage(String content) {
     if (content.trim().isEmpty) return;
 
+    // 判断是否为我发送的第一条消息
+    bool isMyFirstMessage = !_messages.any((msg) => msg.isFromMe);
+
     setState(() {
       _messages.add(
         MessageData(
@@ -147,6 +163,7 @@ class _MessageDemoPageState extends State<MessageDemoPage> {
           type: MessageType.text,
           timestamp: DateTime.now(),
           isFromMe: true,
+          isFirstMessage: isMyFirstMessage, // 动态判断是否为第一条消息
         ),
       );
     });

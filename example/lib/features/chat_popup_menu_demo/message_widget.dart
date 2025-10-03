@@ -15,6 +15,7 @@ class MessageData {
   final MessageType type;
   final DateTime timestamp;
   final bool isFromMe;
+  final bool isFirstMessage; // 标识是否为第一条消息
 
   MessageData({
     required this.id,
@@ -22,6 +23,7 @@ class MessageData {
     required this.type,
     required this.timestamp,
     required this.isFromMe,
+    this.isFirstMessage = false, // 默认不是第一条消息
   });
 }
 
@@ -69,20 +71,51 @@ class _MessageWidgetState extends State<MessageWidget> {
             child: Column(
               crossAxisAlignment: widget.message.isFromMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
-                // 消息气泡
-                GestureDetector(
-                  key: _messageKey,
-                  onLongPress: _showMenu,
-                  child: Container(
-                    // constraints: BoxConstraints(
-                    //   maxWidth: MediaQuery.of(context).size.width * 0.7,
-                    // ),
-                    // margin: EdgeInsets.only(
-                    //   left: widget.message.isFromMe ? 60 : 0,
-                    //   right: widget.message.isFromMe ? 0 : 60,
-                    // ),
-                    child: _buildMessageBubble(),
-                  ),
+                // 消息气泡和第一条消息标识
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 对方发送的第一条消息的图片标识（左边）
+                    if (widget.message.isFirstMessage && !widget.message.isFromMe) ...[
+                      Container(
+                        width: 6,
+                        height: 21,
+                        child: Image.asset(
+                          'assets/images/message_top_white.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ],
+                    
+                    // 消息气泡
+                    GestureDetector(
+                      key: _messageKey,
+                      onLongPress: _showMenu,
+                      child: Container(
+                        constraints: const BoxConstraints(
+                          maxWidth: 262,
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          decoration: _buildMessageDecoration(),
+                          child: _buildMessageContent(),
+                        ),
+                      ),
+                    ),
+
+                    // 我发送的第一条消息的图片标识（右边）
+                    if (widget.message.isFirstMessage && widget.message.isFromMe) ...[
+                      Container(
+                        width: 6,
+                        height: 21,
+                        child: Image.asset(
+                          'assets/images/message_top_red.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
 
                 // 弹出菜单
@@ -113,32 +146,54 @@ class _MessageWidgetState extends State<MessageWidget> {
     );
   }
 
+  /// 构建消息装饰
+  BoxDecoration _buildMessageDecoration() {
+    BorderRadius borderRadius;
+    
+    if (widget.message.isFirstMessage) {
+      // 第一条消息的圆角处理
+      if (widget.message.isFromMe) {
+        // 我发送的第一条消息：右上角不要圆角
+        borderRadius = const BorderRadius.only(
+          topLeft: Radius.circular(8),
+          topRight: Radius.circular(0),
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        );
+      } else {
+        // 对方发送的第一条消息：左上角不要圆角
+        borderRadius = const BorderRadius.only(
+          topLeft: Radius.circular(0),
+          topRight: Radius.circular(8),
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        );
+      }
+    } else {
+      // 其他情况：所有圆角都是8
+      borderRadius = BorderRadius.circular(8);
+    }
+    
+    return BoxDecoration(
+      color: widget.message.isFromMe ? const Color(0xFFFFEDED) : const Color(0xFFFFFFFF),
+      borderRadius: borderRadius,
+    );
+  }
+
   /// 构建头像
   Widget _buildAvatar() {
     return Container(
-      width: 40,
-      height: 40,
+      width: 36,
+      height: 36,
       decoration: BoxDecoration(
         color: widget.message.isFromMe ? Colors.blue : Colors.grey[400],
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: Icon(
         widget.message.isFromMe ? Icons.person : Icons.person_outline,
         color: Colors.white,
         size: 24,
       ),
-    );
-  }
-
-  /// 构建消息气泡
-  Widget _buildMessageBubble() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: widget.message.isFromMe ? const Color(0xFF007AFF) : Colors.grey[200],
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: _buildMessageContent(),
     );
   }
 
@@ -149,8 +204,9 @@ class _MessageWidgetState extends State<MessageWidget> {
         return Text(
           widget.message.content,
           style: TextStyle(
-            fontSize: 16,
-            color: widget.message.isFromMe ? Colors.white : Colors.black87,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Color(0xff1D2024),
           ),
         );
       case MessageType.emoji:

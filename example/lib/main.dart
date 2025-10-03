@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
               context,
               title: '聊天弹出菜单',
               description: '基于 CustomPainter 实现的带圆头箭头的聊天弹出菜单组件',
-              icon: Icons.chat_bubble_outline,
+              icon: Icons.widgets,
               onTap: () {
                 Navigator.push(
                   context,
@@ -215,7 +215,7 @@ class HomePage extends StatelessWidget {
               context,
               title: 'BubbleText 气泡文本',
               description: '基于自定义 RenderObject 实现的高性能气泡文本组件',
-              icon: Icons.chat_bubble_outline,
+              icon: Icons.widgets,
               onTap: () {
                 Navigator.push(
                   context,
