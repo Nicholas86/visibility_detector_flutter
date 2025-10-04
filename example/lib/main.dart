@@ -6,6 +6,7 @@
 
 import 'dart:collection';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'features/visibility_demo/visibility_analysis_page.dart';
@@ -17,6 +18,7 @@ import 'features/pageview_demo/pageview_demo_page.dart';
 import 'features/bubble_text_demo/bubble_text_demo_page.dart';
 import 'features/chat_popup_menu_demo/chat_popup_menu_demo_page.dart';
 import 'features/chat_popup_menu_demo/message_demo_page.dart';
+import 'features/gesture_demo/gesture_demo_page.dart';
 
 const String title = 'VisibilityDetector Demo';
 
@@ -101,6 +103,21 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const VisibilityAnalysisPage(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDemoCard(
+              context,
+              title: '手势演示集合',
+              description: '探索 Flutter 手势系统：手势识别器、UniqueKey 应用、指针信号处理',
+              icon: Icons.touch_app,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GestureDemoPage(),
                   ),
                 );
               },
